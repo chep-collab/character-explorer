@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 font-sans antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-bold text-gray-800;
+  }
+
+  a {
+    @apply text-blue-600 underline hover:text-blue-800;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium text-white bg-blue-600;
+  }
+
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700;
+  }
+
+  .card {
+    @apply p-4 rounded-lg shadow-md bg-white;
+  }
+
+  .character-name {
+    @apply text-lg font-semibold text-gray-900;
+  }
+
+  .character-status-dead {
+    @apply text-red-600 font-bold;
+  }
+}
+
