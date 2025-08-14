@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // ✅ Remove deprecated experimental.appDir
   reactStrictMode: true,
-  experimental: {
-   
-  },
+  swcMinify: true,
 };
 
 module.exports = nextConfig;
+
 
 
