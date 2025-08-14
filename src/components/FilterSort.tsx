@@ -1,9 +1,14 @@
 'use client';
 
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
-export default function FilterSort() {
+interface Props {
+  searchTerm: string;
+  setSearchTerm: Dispatch<SetStateAction<string>>;
+}
+
+export default function FilterSort({ searchTerm, setSearchTerm }: Props) {
   const router = useRouter();
   const pathname = usePathname() || '/';
   const searchParams = useSearchParams();
@@ -28,7 +33,7 @@ export default function FilterSort() {
     router.push(`${pathname}?${params.toString()}`);
   };
 
-  if (!hasMounted) return null; // Prevent mismatch during hydration
+  if (!hasMounted) return null;
 
   return (
     <div className="flex gap-4 mb-4">
@@ -41,4 +46,5 @@ export default function FilterSort() {
     </div>
   );
 }
+
 

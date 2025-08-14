@@ -1,9 +1,9 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import axios from 'axios';
 
-interface Character {
+export interface Character {
   id: number;
   name: string;
   status: string;
@@ -11,28 +11,35 @@ interface Character {
   image: string;
 }
 
-interface FetchCharactersParams {
+export interface FetchCharactersParams {
   page?: number;
   name?: string;
   status?: string;
 }
 
-interface FetchCharactersResponse {
-  info: { count: number; pages: number; next: string | null; prev: string | null };
+export interface FetchCharactersResponse {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
   results: Character[];
 }
 
 const fetchCharacters = async (params: FetchCharactersParams): Promise<FetchCharactersResponse> => {
   const { page = 1, name = '', status = '' } = params;
   const url = `https://rickandmortyapi.com/api/character/?page=${page}&name=${name}&status=${status}`;
-  const res = await axios.get(url);
+  const res = await axios.get<FetchCharactersResponse>(url);
   return res.data;
 };
 
-export const useCharacters = (params: FetchCharactersParams) => {
-  return useQuery({
+export const useCharacters = (
+  params: FetchCharactersParams
+): UseQueryResult<FetchCharactersResponse, Error> => {
+  return useQuery<FetchCharactersResponse, Error>({
     queryKey: ['characters', params],
     queryFn: () => fetchCharacters(params),
-    keepPreviousData: true,
+    staleTime: 1000 * 60 * 5, // optional: cache for 5 minutes
   });
 };

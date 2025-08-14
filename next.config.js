@@ -2,10 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  // Removed experimental.appDir because App Router is now default
-}
+  images: {
+    domains: ['rickandmortyapi.com'],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
+
+
 
 
 
