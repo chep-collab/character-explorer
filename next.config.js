@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // ✅ Remove deprecated experimental.appDir
   reactStrictMode: true,
   swcMinify: true,
-};
+  // Removed experimental.appDir because App Router is now default
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
+
 
 
 
